@@ -34,7 +34,7 @@ for i in range(labels.shape[0]):
 report = pd.concat([pd.DataFrame(file[f] for f in columns).T,                   #Copies columns from imported file to appropriate columns. Transposed to match column and rows with report
                     labels.drop(labels.columns[4], axis=1),                     #Deletes column 5 in labels as it will never have a value                    
                     file['Created'].str.replace('T', ' ').str[:-5],             #Coverting 'created' column into format yyyy/mm/dd hh/mm/ss
-                    file['Completed'].str.replace('T', ' ').str[:-5]], axis = 1)  #Coverting 'updated' column into format yyyy/mm/dd hh/mm/ss
+                    file['Completed'].str.replace('T', ' ').str[:-5]], axis = 1)  #Coverting 'completed' column into format yyyy/mm/dd hh/mm/ss
 
 #Converts report to CSV and generates CSV file 'Ticket Report'
 report.to_csv('Final Report.csv', index=False) 
