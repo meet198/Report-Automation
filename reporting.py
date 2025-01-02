@@ -3,6 +3,9 @@ import pandas as pd
 #import CSV using pandas
 file = pd.read_csv('Raw Report.csv')
 
+#Used to make labels column split more than 3 to make row size the same at the end
+file['Labels'][0] += ',' + ',' + ','
+
 #some of the columns needed in the final report file  
 columns = ['ID', 'Team', 'Title', 'Priority', 'Project', 'Creator']
 
@@ -32,7 +35,7 @@ for i in range(labels.shape[0]):
 
 #Combining all dataframes for the final report
 report = pd.concat([pd.DataFrame(file[f] for f in columns).T,                   #Copies columns from imported file to appropriate columns. Transposed to match column and rows with report
-                    labels.drop(labels.columns[4], axis=1),                     #Deletes column 5 in labels as it will never have a value                    
+                    labels.drop(labels.columns[4:], axis=1),                     #Deletes column 5+ in labels as it will never have a value                    
                     file['Created'].str.replace('T', ' ').str[:-5],             #Coverting 'created' column into format yyyy/mm/dd hh/mm/ss
                     file['Completed'].str.replace('T', ' ').str[:-5]], axis = 1)  #Coverting 'completed' column into format yyyy/mm/dd hh/mm/ss
 
