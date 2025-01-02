@@ -3,8 +3,8 @@ import pandas as pd
 #import CSV using pandas
 file = pd.read_csv('Raw Report.csv')
 
-#Used to make labels column split more than 3 to make row size the same at the end
-file['Labels'][0] += ',' + ',' + ','
+#Used to make 'Labels' column split more than 3 times to ensure same row size at the end
+file.loc[0, 'Labels'] += ', , ,'
 
 #some of the columns needed in the final report file  
 columns = ['ID', 'Team', 'Title', 'Priority', 'Project', 'Creator']
