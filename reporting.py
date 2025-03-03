@@ -19,7 +19,7 @@ filter = ['bug', 'task', 'non-bug', 'user error']
 for i in range(labels.shape[0]):
     for j in range (1,labels.shape[1]):
 
-        if labels.iloc[i,j] == None or labels.iloc[i,j].lower().lstrip(' ') not in filter: labels.iloc[i,j] = "-"
+        if pd.isna(labels.iloc[i,j]) or labels.iloc[i,j].lower().lstrip(' ') not in filter: labels.iloc[i,j] = "-"
 
         if labels.iloc[i,j].lower().lstrip(' ') in ['bug', 'task'] and j != 1:
             labels.iloc[i,1] = labels.iloc[i,j]
